@@ -1,6 +1,6 @@
 Package: bigsparser
 Title: Sparse Matrix Format with Data on Disk
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: 
     person(given = "Florian",
            family = "Privé",
@@ -17,12 +17,12 @@ LazyData: true
 RoxygenNote: 7.0.2
 URL: https://github.com/privefl/bigsparser
 BugReports: https://github.com/privefl/bigsparser/issues
-LinkingTo: Rcpp, rmio
+LinkingTo: Rcpp, RcppEigen, rmio
 Imports: Rcpp, bigassertr, methods
 Suggests: Matrix, testthat (>= 2.1.0)
 NeedsCompilation: yes
-Packaged: 2020-04-08 12:39:16 UTC; au639593
+Packaged: 2020-05-25 08:39:30 UTC; au639593
 Author: Florian Privé [aut, cre]
 Maintainer: Florian Privé <florian.prive.21@gmail.com>
 Repository: CRAN
-Date/Publication: 2020-04-10 08:40:02 UTC
+Date/Publication: 2020-05-25 09:00:11 UTC
