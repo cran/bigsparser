@@ -1,4 +1,4 @@
-09bb0cd09c6f8e31b60db7ea161ddb27 *DESCRIPTION
+f11d203a1e67a4007a6cf3b014f6a094 *DESCRIPTION
 b592d9211027baef807ee4b0dd654717 *NAMESPACE
 7254e06ae949e11bdb44b733dadd1584 *R/RcppExports.R
 8ad870baeb516602d2b9bd5c4f095a47 *R/SFBM.R
@@ -18,7 +18,7 @@ d11f89fba3ab3f04694fc747ce15debe *man/sp_solve_sym.Rd
 f7d7978c5369300994750a22fedf3b95 *src/SFBM-xptr.cpp
 0113cb5e9a75487c345b6f99905d3f58 *src/prod.cpp
 25ac878290f126fd307294719df551bd *src/solve.cpp
-58eac9bfeddf6bcdfb7bea5aa1a4a54e *src/write-indval.cpp
+a1bc034d6c17d94aabdd605f7bb8e552 *src/write-indval.cpp
 99a8b35e68806998f5a43d8e933e7e31 *tests/testthat.R
 73aaf597a218304d2ddafedd54ae99df *tests/testthat/test-SFBM.R
 1f46048ee0a683e4f0358db2b8f2fead *tests/testthat/test-add-columns.R
