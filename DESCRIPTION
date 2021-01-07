@@ -1,6 +1,6 @@
 Package: bigsparser
 Title: Sparse Matrix Format with Data on Disk
-Version: 0.4.0
+Version: 0.4.1
 Authors@R: 
     person(given = "Florian",
            family = "Privé",
@@ -23,8 +23,8 @@ LinkingTo: Rcpp, RcppEigen, rmio (>= 0.2)
 Imports: Rcpp, bigassertr, methods
 Suggests: Matrix, testthat (>= 2.1.0)
 NeedsCompilation: yes
-Packaged: 2020-08-24 06:57:55 UTC; au639593
+Packaged: 2021-01-06 15:38:02 UTC; au639593
 Author: Florian Privé [aut, cre]
 Maintainer: Florian Privé <florian.prive.21@gmail.com>
 Repository: CRAN
-Date/Publication: 2020-08-24 08:00:07 UTC
+Date/Publication: 2021-01-07 07:00:55 UTC

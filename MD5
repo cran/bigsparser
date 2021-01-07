@@ -1,4 +1,4 @@
-7e8671e3be33f3356f441abdfc7ce7d3 *DESCRIPTION
+244382513a764f6fa7f2ab0bae5b2e64 *DESCRIPTION
 b98e37c97b242008030debd3b9d1c385 *NAMESPACE
 0fd4fab13646354fdf0f58cdc5328dde *R/RcppExports.R
 d53dc4c6463c028b67120d164a398c80 *R/SFBM.R
@@ -6,8 +6,8 @@ d53dc4c6463c028b67120d164a398c80 *R/SFBM.R
 b462496ddc1ac08a4989d175a0c19037 *R/prod.R
 83cc5cb1547f440dbe27ee62a73a19cc *R/solve-sym.R
 63a108f9582ff19f0db7da30b6fcdfa5 *README.md
-a5262ebe2cde998943c8b2c6126d3bff *inst/include/bigsparser/EigenMatrixReplacement.h
-26a73aacb06ec6965aa87729e3e26059 *inst/include/bigsparser/SFBM.h
+3612962f3c1baf8a428e035d39983b25 *inst/include/bigsparser/EigenMatrixReplacement.h
+6ca34eb3a493e6a25d49da2be27f9b26 *inst/include/bigsparser/SFBM.h
 471feadfe59df81582bfe42ef775ab1d *man/SFBM-class.Rd
 d0dfacabf12411d5b205c50780d3683f *man/SFBM-methods.Rd
 d49184acd9f5509f6f9c9e3d0b66daa4 *man/bigsparser-package.Rd
