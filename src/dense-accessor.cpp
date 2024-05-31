@@ -8,23 +8,20 @@ using namespace Rcpp;
 /******************************************************************************/
 
 // [[Rcpp::export]]
-List access_subset(Environment X,
-                   const IntegerVector& ind_row,
-                   const IntegerVector& ind_col) {
+NumericMatrix access_dense_subset(Environment X,
+                                  const IntegerVector& ind_row,
+                                  const IntegerVector& ind_col) {
 
   XPtr<SFBM> sfbm = X["address"];
   const NumericVector p = X["p"];
+  const double * data = sfbm->i_x();
   const IntegerVector ind_row2 = ind_row - 1;
   int N = sfbm->nrow();
+  NumericVector cur_col(N);
+
   int n = ind_row.size();
   int m = ind_col.size();
-  const double * data = sfbm->i_x();
-
-  std::vector<int>    new_i;
-  std::vector<double> new_x;
-  NumericVector new_p(m + 1);
-
-  NumericVector cur_col(N);
+  NumericMatrix mat(n, m);
 
   for (int j = 0; j < m; j++) {
 
@@ -40,46 +37,36 @@ List access_subset(Environment X,
       cur_col[ind] = val;
     }
 
-    // second pass: read requested indices, and store values (if != 0)
-    for (int i = 0; i < n; i++) {
-      double val = cur_col[ind_row2[i]];
-      if (val != 0) {
-        new_i.push_back(i);
-        new_x.push_back(val);
-      }
-    }
+    // second pass: read requested indices, and store corresponding values
+    for (int i = 0; i < n; i++)
+      mat(i, j) = cur_col[ind_row2[i]];
 
     // third pass: reset column
     for (size_t k = lo; k < up; k += 2) {
       int ind = data[k];
       cur_col[ind] = 0;
     }
-
-    // store cumulative number of elements
-    new_p[j + 1] = new_i.size();
   }
 
-  return List::create(_["p"] = new_p, _["i"] = new_i, _["x"] = new_x);
+  return mat;
 }
 
 /******************************************************************************/
 
 // [[Rcpp::export]]
-List access_subset_compact(Environment X,
-                           const IntegerVector& ind_row,
-                           const IntegerVector& ind_col) {
+NumericMatrix access_dense_subset_compact(Environment X,
+                                          const IntegerVector& ind_row,
+                                          const IntegerVector& ind_col) {
 
   XPtr<SFBM> sfbm = X["address"];
   const NumericVector p = X["p"];
   const IntegerVector first_i = X["first_i"];
+  const double * data = sfbm->i_x();
   const IntegerVector ind_row2 = ind_row - 1;
+
   int n = ind_row.size();
   int m = ind_col.size();
-  const double * data = sfbm->i_x();
-
-  std::vector<int>    new_i;
-  std::vector<double> new_x;
-  NumericVector new_p(m + 1);
+  NumericMatrix mat(n, m);
 
   for (int j = 0; j < m; j++) {
 
@@ -98,39 +85,30 @@ List access_subset_compact(Environment X,
         int shift = i2 - min_i;
         if (shift >= nb) continue;  // after range
 
-        double val = data[lo + shift];
-        if (val != 0) {
-          new_i.push_back(i);
-          new_x.push_back(val);
-        }
+        mat(i, j) = data[lo + shift];
       }
     }
-
-    // store cumulative number of elements
-    new_p[j + 1] = new_i.size();
   }
 
-  return List::create(_["p"] = new_p, _["i"] = new_i, _["x"] = new_x);
+  return mat;
 }
 
 /******************************************************************************/
 
 // [[Rcpp::export]]
-List access_subset_corr_compact(Environment X,
-                                const IntegerVector& ind_row,
-                                const IntegerVector& ind_col) {
+NumericMatrix access_dense_subset_corr_compact(Environment X,
+                                               const IntegerVector& ind_row,
+                                               const IntegerVector& ind_col) {
 
   XPtr<SFBM_corr_compact> sfbm = X["address"];
   const NumericVector p = X["p"];
   const IntegerVector first_i = X["first_i"];
+  const int16_t * data = sfbm->i_x();
   const IntegerVector ind_row2 = ind_row - 1;
+
   int n = ind_row.size();
   int m = ind_col.size();
-  const int16_t * data = sfbm->i_x();
-
-  std::vector<int>    new_i;
-  std::vector<double> new_x;
-  NumericVector new_p(m + 1);
+  NumericMatrix mat(n, m);
 
   for (int j = 0; j < m; j++) {
 
@@ -150,18 +128,12 @@ List access_subset_corr_compact(Environment X,
         if (shift >= nb) continue;  // after range
 
         int16_t val = data[lo + shift];
-        if (val != 0) {
-          new_i.push_back(i);
-          new_x.push_back(val / 32767.0);
-        }
+        mat(i, j) = val / 32767.0;
       }
     }
-
-    // store cumulative number of elements
-    new_p[j + 1] = new_i.size();
   }
 
-  return List::create(_["p"] = new_p, _["i"] = new_i, _["x"] = new_x);
+  return mat;
 }
 
 /******************************************************************************/
